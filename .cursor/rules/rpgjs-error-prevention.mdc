@@ -1,0 +1,33 @@
+---
+description: async/await for interactions, map existence checks, event ID conventions
+globs: "**/*.ts"
+alwaysApply: false
+---
+
+# Error Prevention
+
+1. **Use async/await for player interactions:**
+
+```typescript
+async onAction(player: RpgPlayer) {
+    await player.showText('Hello')
+    player.gold += 10
+}
+```
+
+2. **Check map existence before map operations:**
+
+```typescript
+const map = player.getCurrentMap()
+if (map) {
+    // Safe to use map
+}
+```
+
+3. **Use unique, descriptive event IDs:**
+
+```typescript
+@EventData({
+    name: 'EV-TOWN-VILLAGER-001'
+})
+```

@@ -1,0 +1,85 @@
+# ============================================
+# Root .gitignore — RPG game, Studio, PicoClaw
+# ============================================
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+lib/
+*.local
+
+# Logs and debug
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors and IDEs
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# ========== my-rpg-game (RPG) ==========
+# (node_modules/dist covered above)
+
+# ========== studio ==========
+supabase/.temp/
+
+# ========== picoclaw (Go) ==========
+# Binaries and build (ignore built binaries, not the picoclaw source folder)
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+picoclaw/picoclaw
+picoclaw/picoclaw-test
+cmd/picoclaw/workspace
+# PicoClaw runtime
+.picoclaw/
+config.json
+sessions/
+# Coverage
+coverage.txt
+coverage.html
+# Ralph workspace
+ralph/
+.ralph/
+tasks/
+
+# ========== RPG-JS framework ==========
+packages/common/types
+docs/api/*
+docs/others/*
+!docs/api/readme.md
+!docs/others/readme.md
+cache
+packages/**/browser
+vitest.config.ts.timestamp*
+
+# ========== Optional local / temp ==========
+*.tsbuildinfo
+.turbo

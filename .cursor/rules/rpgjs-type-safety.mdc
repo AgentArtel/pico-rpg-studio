@@ -1,0 +1,24 @@
+---
+description: Export hook types, parameter type annotations, no any
+globs: "**/*.ts"
+alwaysApply: false
+---
+
+# Type Safety Rules
+
+1. **Export type hooks explicitly:**
+
+```typescript
+const player: RpgPlayerHooks = { ... }
+const sprite: RpgSpriteHooks = { ... }
+const client: RpgClientEngineHooks = { ... }
+```
+
+2. **Use type annotations on parameters:**
+
+```typescript
+async onAction(player: RpgPlayer) { }
+onJoin(player: RpgPlayer) { }
+```
+
+3. **Never use `any`** — use proper RPG-JS types from `@rpgjs/server`, `@rpgjs/client`, or `@rpgjs/database`.

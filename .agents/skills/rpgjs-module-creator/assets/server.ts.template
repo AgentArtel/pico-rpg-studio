@@ -1,0 +1,13 @@
+import { RpgServerEngine } from "@rpgjs/server"
+
+export default {
+    auth(engine: RpgServerEngine, socket: any) {
+        // Authentication logic
+        // Return player data or null to reject
+        return {}
+    },
+    onStart(engine: RpgServerEngine) {
+        // Called when server starts
+        console.log('Module server started')
+    }
+}

@@ -1,0 +1,26 @@
+---
+description: Structure of player.ts and hook signatures
+globs: "**/player.ts"
+alwaysApply: false
+---
+
+# Player Hooks Structure
+
+Export a single object typed as `RpgPlayerHooks` with lifecycle hooks. Use typed parameters.
+
+```typescript
+const player: RpgPlayerHooks = {
+    onConnected(player: RpgPlayer) {
+        // Initialize player
+    },
+    onInput(player: RpgPlayer, { input }) {
+        // Handle input
+    },
+    async onJoinMap(player: RpgPlayer) {
+        // Map join logic
+    }
+}
+export default player
+```
+
+Common hooks: `onConnected`, `onInput`, `onJoinMap`, `onLevelUp`, `onDead`. Always annotate `player` as `RpgPlayer`.

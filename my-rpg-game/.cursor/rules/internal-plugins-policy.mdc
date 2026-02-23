@@ -1,0 +1,18 @@
+---
+description: Internal-only plugins policy — game-only, leave main as-is, new features as plugins/modules
+alwaysApply: true
+---
+
+# Internal Plugins Policy (Game)
+
+- **Plugins/modules are game-only.** They are an RPG-JS concept: entries in this game's `rpg.toml` under `modules`, with `server/`, `client/`, `index.ts`, optional `config.json`. Studio (the workflow app) does not use RPG-JS plugins. The only exception is a game-side plugin whose purpose is to connect with Studio (e.g. game-control bridge).
+
+- **All our plugins are internal-only.** We do not publish to npm, the RPG-JS community, or the RPG-JS repo. No `rpgjs-*` naming requirement. We use the same structure (e.g. `plugins/<name>/` or `modules/<name>/`) for organization and optional `config.json` + `globalConfig` when a feature needs options.
+
+- **Leave existing code in `main/` as-is.** ContentSync, npcSpawner, memoryService, objectSpawner, player state in `main/player.ts`, etc. stay in `main/`. No big refactor required.
+
+- **New, self-contained features** go in a new entry in `rpg.toml`: `./plugins/<name>` or `./modules/<name>` with `server/`, `client/`, `index.ts`. Add `config.json` (namespace + schema) when the feature needs tunable options from `rpg.toml`.
+
+- **New game content** (maps, events, items, story-specific logic) stays in `main/` (events, maps, database, player hooks, etc.).
+
+Reference: `ideas/internal-plugins-policy.md` and `ideas/game-features-as-rpgjs-plugins-handoff.md`.

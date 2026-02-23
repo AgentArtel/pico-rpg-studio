@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  THIS IS A BROKEN EXAMPLE showing common Tiled issues
+  The Tiled Assistant would catch and fix these.
+-->
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="32" tileheight="32">
+ <!-- 
+   BAD: Absolute path (won't work on other machines)
+   BAD: Path outside project directory
+   FIX: Use relative path like "../tilesets/terrain.tsx"
+ -->
+ <tileset firstgid="1" source="C:/Users/Admin/Desktop/terrain.tsx"/>
+ 
+ <!-- 
+   BAD: Path traversing too many directories
+   FIX: Use "../tilesets/terrain.tsx" 
+ -->
+ <tileset firstgid="49" source="../../../../../../tilesets/objects.tsx"/>
+ 
+ <layer id="1" name="Ground" width="10" height="10">
+  <data encoding="csv">0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0</data>
+ </layer>
+ 
+ <!-- 
+   BAD: Wrong layer name (won't spawn events)
+   FIX: Use name="Events" for event layer
+ -->
+ <objectgroup id="2" name="NPCs">
+  <object id="1" name="EV-001" x="100" y="100"/>
+ </objectgroup>
+</map>

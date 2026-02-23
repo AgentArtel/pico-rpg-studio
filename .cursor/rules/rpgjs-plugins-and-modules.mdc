@@ -1,0 +1,13 @@
+---
+description: Internal plugins/modules policy — do not refactor main; new features go in modules
+alwaysApply: true
+---
+
+# Plugins and Modules (Internal Use)
+
+- **All plugins/modules in this repo are for internal use only.** They are not published or shared; they are an organizational pattern for this game.
+- **Leave existing code in `main/` as-is.** Do not refactor ContentSync, npcSpawner, memoryService, objectSpawner, player state sync, or workflow runner into plugins unless explicitly asked.
+- **Going forward, organize new work by creating plugins/modules:**
+  - **New self-contained features** (new systems, integrations, reusable behavior) → New module in `rpg.toml` (e.g. `./plugins/my-feature` or `./modules/my-feature`) with `client/`, `server/`, `index.ts`; add `config.json` if the feature needs options in `rpg.toml`.
+  - **New game content** (maps, events, items, story, one-off logic) → Keep in `main/` (events, maps, database, player hooks).
+- Prefer the term **module** for internal folders; use **plugin** only when the folder has a `config.json` and is clearly optional/configurable.

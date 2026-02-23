@@ -1,0 +1,26 @@
+---
+description: Vitest setup, testing/clear, RpgModule fixture
+globs: ["**/*.spec.ts", "**/__tests__/**/*.ts"]
+alwaysApply: false
+---
+
+# Testing Guidelines
+
+Use `@rpgjs/testing` with Vitest. Create a fixture with your server module, then create a client to get a player instance. Call `clear()` in `afterEach`.
+
+```typescript
+import { testing, clear } from '@rpgjs/testing'
+import { beforeEach, afterEach, test, expect } from 'vitest'
+
+beforeEach(async () => {
+    const fixture = await testing([{ server: RpgServerModule }])
+    const clientFixture = await fixture.createClient()
+    currentPlayer = clientFixture.player
+})
+
+afterEach(() => {
+    clear()
+})
+```
+
+Run tests with: `npx vitest --config node_modules/@rpgjs/compiler/src/test/vitest.config.ts`

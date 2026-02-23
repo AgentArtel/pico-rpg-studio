@@ -1,0 +1,3 @@
+# RPG-JS Project Rules
+
+Project rules live in `.cursor/rules/*.mdc`. See [AGENTS.md](AGENTS.md) for project overview, build commands, and deployment.

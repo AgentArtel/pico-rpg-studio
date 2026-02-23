@@ -1,0 +1,37 @@
+---
+description: Vue GUI pattern — inject, name, rpgGuiClose
+globs: "**/*.vue"
+alwaysApply: false
+---
+
+# GUI Vue Component Pattern
+
+Use Options API with `inject` for RPG-JS services. Close via `rpgGuiClose('gui-name')` so the name matches the GUI id.
+
+```vue
+<template>
+    <div class="my-gui">
+        <!-- Content -->
+    </div>
+</template>
+
+<script lang="ts">
+export default {
+    name: 'my-gui',
+    inject: ['rpgEngine', 'rpgKeypress', 'rpgGuiClose', 'rpgGui', 'rpgStage'],
+    props: ['propName'],
+    mounted() {
+        // Initialize
+    },
+    methods: {
+        close() {
+            this.rpgGuiClose('my-gui')
+        }
+    }
+}
+</script>
+
+<style scoped>
+.my-gui { }
+</style>
+```

@@ -1,0 +1,33 @@
+# PicoClaw + Game Server Docker Compose
+# Usage: docker compose up picoclaw
+#
+# The picoclaw service exposes an HTTP gateway on :18790.
+# Studio's picoclaw-bridge edge function talks to it via PICOCLAW_GATEWAY_URL.
+#
+# For local dev: PICOCLAW_GATEWAY_URL=http://localhost:18790
+# For production: set to a reachable URL (Railway service URL, VM, tunnel)
+
+services:
+  picoclaw:
+    build:
+      context: ./picoclaw
+      dockerfile: Dockerfile
+    ports:
+      - "18790:18790"
+    volumes:
+      - picoclaw-workspaces:/home/picoclaw/.picoclaw/workspace
+    environment:
+      # LLM API keys - set in .env or pass via shell
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      KIMI_API_KEY: ${KIMI_API_KEY:-}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:18790/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    restart: unless-stopped
+
+volumes:
+  picoclaw-workspaces:

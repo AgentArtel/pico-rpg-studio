@@ -1,0 +1,210 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "game-api",
+        "responseMode": "responseNode"
+      },
+      "id": "25f406ae-613c-4b18-99bb-34de7f4f04f1",
+      "name": "Game API Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [256, 592],
+      "webhookId": "1e42eab3-690f-4cc3-b26f-0ac006e8958c"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+                "conditions": [
+                  { "leftValue": "={{ $json.object_type }}", "rightValue": "mailbox", "operator": { "type": "string", "operation": "equals" } },
+                  { "leftValue": "={{ $json.action }}", "rightValue": "fetch_emails", "operator": { "type": "string", "operation": "equals" } }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "fetch_emails"
+            },
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+                "conditions": [
+                  { "leftValue": "={{ $json.object_type }}", "rightValue": "mailbox", "operator": { "type": "string", "operation": "equals" } },
+                  { "leftValue": "={{ $json.action }}", "rightValue": "send_email", "operator": { "type": "string", "operation": "equals" } }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "send_email"
+            },
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+                "conditions": [
+                  { "leftValue": "={{ $json.object_type }}", "rightValue": "desk", "operator": { "type": "string", "operation": "equals" } },
+                  { "leftValue": "={{ $json.action }}", "rightValue": "process_mail", "operator": { "type": "string", "operation": "equals" } }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "process_mail"
+            },
+            {
+              "conditions": {
+                "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+                "conditions": [
+                  { "leftValue": "={{ $json.object_type }}", "rightValue": "desk", "operator": { "type": "string", "operation": "equals" } },
+                  { "leftValue": "={{ $json.action }}", "rightValue": "check_desk", "operator": { "type": "string", "operation": "equals" } }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "check_desk"
+            }
+          ]
+        }
+      },
+      "id": "b0f8b9d0-8c8a-4b52-9b4b-960171c2d467",
+      "name": "Route by Action",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [480, 560]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "returnAll": true,
+        "filters": { "labelIds": ["INBOX"] }
+      },
+      "id": "3e6e3d1e-b7d6-4d08-83c1-74f923cd64dc",
+      "name": "Fetch Gmail Messages",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [704, 304],
+      "webhookId": "5763d0b7-a3b7-4761-93d5-5d9b2e1a73a4",
+      "credentials": { "gmailOAuth2": { "id": "3HntKd60gn0MrkKe", "name": "Gmail account" } }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "id-1", "name": "success", "value": true, "type": "boolean" },
+            { "id": "id-2", "name": "message", "value": "={{ 'Fetched ' + $input.all().length + ' emails' }}", "type": "string" },
+            { "id": "id-3", "name": "inventory_delta", "value": "={{ { add: [{ type: 'email', count: $input.all().length }], remove: [] } }}", "type": "object" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8977776f-e2bd-4679-affb-e2e0830e7b2b",
+      "name": "Format Fetch Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [928, 304]
+    },
+    {
+      "parameters": { "respondWith": "json", "responseBody": "={{ $json }}" },
+      "id": "f40703e4-e36b-47e0-967e-a2d71550e6d7",
+      "name": "Respond Fetch Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [1152, 304]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "id-1", "name": "success", "value": true, "type": "boolean" },
+            { "id": "id-2", "name": "message", "value": "Email sent successfully (placeholder)", "type": "string" },
+            { "id": "id-3", "name": "inventory_delta", "value": { "add": [], "remove": [{ "type": "draft-email", "count": 1 }] }, "type": "object" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "33fa3f9f-f2a1-42e6-8296-4ee826ddc28c",
+      "name": "Format Send Email Placeholder",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [704, 496]
+    },
+    {
+      "parameters": { "respondWith": "json", "responseBody": "={{ $json }}" },
+      "id": "e291a32d-3999-4fe8-afcb-09f446e89021",
+      "name": "Respond Send Email",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [928, 496]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "id-1", "name": "success", "value": true, "type": "boolean" },
+            { "id": "id-2", "name": "message", "value": "Mail processed and tagged", "type": "string" },
+            { "id": "id-3", "name": "inventory_delta", "value": { "add": [{ "type": "tagged-email", "count": 1 }], "remove": [{ "type": "email", "count": 1 }] }, "type": "object" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "26df4525-c13b-4ce6-9c54-fe1494397610",
+      "name": "Format Process Mail Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [704, 688]
+    },
+    {
+      "parameters": { "respondWith": "json", "responseBody": "={{ $json }}" },
+      "id": "c3bbe9dd-ea29-4d4e-aff7-1824fc77e989",
+      "name": "Respond Process Mail",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [928, 688]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "id-1", "name": "success", "value": true, "type": "boolean" },
+            { "id": "id-2", "name": "message", "value": "Desk checked - summary generated", "type": "string" },
+            { "id": "id-3", "name": "inventory_delta", "value": { "add": [], "remove": [] }, "type": "object" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "969eb5fd-3aad-4097-bf46-0a6bcfef426c",
+      "name": "Format Check Desk Response",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [704, 880]
+    },
+    {
+      "parameters": { "respondWith": "json", "responseBody": "={{ $json }}" },
+      "id": "9b5099d9-3839-4f5a-b62f-5ac658a1decc",
+      "name": "Respond Check Desk",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [928, 880]
+    }
+  ],
+  "connections": {
+    "Game API Webhook": { "main": [[{ "node": "Route by Action", "type": "main", "index": 0 }]] },
+    "Route by Action": {
+      "main": [
+        [{ "node": "Fetch Gmail Messages", "type": "main", "index": 0 }],
+        [{ "node": "Format Send Email Placeholder", "type": "main", "index": 0 }],
+        [{ "node": "Format Process Mail Response", "type": "main", "index": 0 }],
+        [{ "node": "Format Check Desk Response", "type": "main", "index": 0 }]
+      ]
+    },
+    "Fetch Gmail Messages": { "main": [[{ "node": "Format Fetch Response", "type": "main", "index": 0 }]] },
+    "Format Fetch Response": { "main": [[{ "node": "Respond Fetch Success", "type": "main", "index": 0 }]] },
+    "Format Send Email Placeholder": { "main": [[{ "node": "Respond Send Email", "type": "main", "index": 0 }]] },
+    "Format Process Mail Response": { "main": [[{ "node": "Respond Process Mail", "type": "main", "index": 0 }]] },
+    "Format Check Desk Response": { "main": [[{ "node": "Respond Check Desk", "type": "main", "index": 0 }]] }
+  },
+  "pinData": {},
+  "meta": { "instanceId": "3f9e7b5601abff58317f59d2849bc6fe26aaf92e526452458d8d109200b89406" }
+}

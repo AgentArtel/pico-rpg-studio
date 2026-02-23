@@ -1,0 +1,55 @@
+{
+    "maps": [
+        {
+            "fileName": "maps/simplemap.tmx",
+            "height": 640,
+            "width": 800,
+            "x": 64,
+            "y": -160
+        },
+        {
+            "fileName": "maps/simplemap2.tmx",
+            "height": 640,
+            "width": 640,
+            "x": -160,
+            "y": 480
+        },
+        {
+            "fileName": "maps/village_square.tmx",
+            "height": 640,
+            "width": 640,
+            "x": 448,
+            "y": 480
+        },
+        {
+            "fileName": "maps/voidMap.tmx",
+            "height": 480,
+            "width": 480,
+            "x": 864,
+            "y": -640
+        },
+        {
+            "fileName": "maps/loomVillageMap.tmx",
+            "height": 640,
+            "width": 800,
+            "x": 1344,
+            "y": -160
+        },
+        {
+            "fileName": "maps/hometown.tmx",
+            "height": 640,
+            "width": 800,
+            "x": 1088,
+            "y": 480
+        },
+        {
+            "fileName": "maps/childhoodhome.tmx",
+            "height": 640,
+            "width": 800,
+            "x": 1888,
+            "y": 480
+        }
+    ],
+    "onlyShowAdjacentMaps": false,
+    "type": "world"
+}

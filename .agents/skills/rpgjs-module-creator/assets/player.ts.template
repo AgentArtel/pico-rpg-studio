@@ -1,0 +1,19 @@
+import { RpgPlayer, type RpgPlayerHooks, Control, Components } from '@rpgjs/server'
+
+const player: RpgPlayerHooks = {
+    onConnected(player: RpgPlayer) {
+        // Called when a player connects
+        player.setComponentsTop(Components.text('{name}'))
+    },
+    onInput(player: RpgPlayer, { input }) {
+        // Handle player input
+        if (input == Control.Back) {
+            player.callMainMenu()
+        }
+    },
+    async onJoinMap(player: RpgPlayer) {
+        // Called when player enters a map
+    }
+}
+
+export default player

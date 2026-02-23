@@ -1,0 +1,34 @@
+---
+description: Quick reference for player, event, and map methods
+globs: "**/*.ts"
+alwaysApply: false
+---
+
+# Common Methods Reference
+
+```typescript
+// Player
+player.showText('Hello')
+player.showText('Hello', { talkWith: this })
+player.gold += 100
+player.addItem(Potion, 1)
+player.removeItem(Potion, 1)
+player.setVariable('KEY', value)
+player.getVariable('KEY')
+player.setGraphic('hero')
+player.setComponentsTop(Components.text('{name}'))
+player.callMainMenu()
+player.gui('guiName').open(data)
+player.gui('guiName').close()
+
+// Event
+this.setGraphic('name')
+this.setHitbox(width, height)
+this.speed = Speed.Slow
+this.moveTo(x, y)
+this.teleport(x, y)
+
+// Map (after getCurrentMap())
+const map = player.getCurrentMap()
+map?.createDynamicEvent({ x, y, event: EventClass })
+```

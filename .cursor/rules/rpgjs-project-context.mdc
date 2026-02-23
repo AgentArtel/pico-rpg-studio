@@ -1,0 +1,13 @@
+---
+description: RPG-JS project context, framework stack, and when to use agent skills
+alwaysApply: true
+---
+
+# RPG-JS Project Context
+
+This is an RPG-JS project: a TypeScript framework for creating RPG/MMORPG games that run in the browser. Stack: TypeScript 5.x (strict), PixiJS v7 (WebGL), Vue.js v3 (UI), Socket.io v4 (multiplayer), Tiled Map Editor (levels).
+
+**Resources:** [docs.rpgjs.dev](https://docs.rpgjs.dev) | [community.rpgjs.dev](https://community.rpgjs.dev) | [playground.rpgjs.dev](https://playground.rpgjs.dev)
+
+- For **repository structure, build commands, and deployment**, see [AGENTS.md](AGENTS.md).
+- For **creating modules, NPCs, items, GUIs, or Tiled map fixes**, read and follow the relevant skill in [.agents/skills/](.agents/skills/) (see README.md for the skill list).

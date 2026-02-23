@@ -1,0 +1,46 @@
+---
+description: Imports from @rpgjs/* and decorator usage for events, maps, items, spritesheets
+globs: "**/*.ts"
+alwaysApply: false
+---
+
+# Imports and Decorators
+
+## Import Patterns
+
+```typescript
+// Server
+import { RpgPlayer, RpgPlayerHooks, Control, Components } from '@rpgjs/server'
+import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
+import { RpgMap, MapData } from '@rpgjs/server'
+
+// Client
+import { RpgSprite, RpgSpriteHooks } from '@rpgjs/client'
+import { RpgModule, RpgClient } from '@rpgjs/client'
+import { Spritesheet, Presets } from '@rpgjs/client'
+
+// Database
+import { Item, Weapon, Armor, Skill, Class, Actor, Enemy, State } from '@rpgjs/database'
+```
+
+## Decorator Patterns
+
+Use experimental decorators with proper metadata:
+
+```typescript
+// Events
+@EventData({ name: 'EV-001', hitbox: { width: 32, height: 16 } })
+export default class MyEvent extends RpgEvent { }
+
+// Maps
+@MapData({ id: 'town', file: require('./worlds/maps/town.tmx') })
+export default class TownMap extends RpgMap { }
+
+// Database items
+@Item({ id: 'potion', name: 'Potion', description: 'Restores 100 HP', price: 100, consumable: true })
+export default class Potion { }
+
+// Spritesheets
+@Spritesheet(Presets.RMSpritesheet(3, 4))
+export default class Characters { }
+```

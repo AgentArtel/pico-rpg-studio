@@ -1,0 +1,18 @@
+import { RpgEvent, EventData, RpgPlayer } from '@rpgjs/server'
+
+@EventData({
+    name: 'EV-001',
+    hitbox: {
+        width: 32,
+        height: 16
+    }
+})
+export default class {{EVENT_NAME}} extends RpgEvent {
+    onInit() {
+        this.setGraphic('male')
+    }
+    
+    async onAction(player: RpgPlayer) {
+        await player.showText('Hello!')
+    }
+}

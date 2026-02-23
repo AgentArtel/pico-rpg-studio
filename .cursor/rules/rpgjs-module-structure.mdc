@@ -1,0 +1,36 @@
+---
+description: Module folder layout and rpg.toml registration
+alwaysApply: true
+---
+
+# Module Structure
+
+A complete module should have:
+
+```
+module-name/
+├── player.ts       # Player hooks
+├── server.ts       # Server engine hooks
+├── client.ts       # Client engine hooks
+├── index.ts        # Module exports (optional)
+├── events/         # NPC events
+├── maps/           # Map definitions
+├── spritesheets/   # Sprite definitions
+├── database/       # Items, skills, etc.
+│   ├── items/
+│   ├── skills/
+│   └── classes/
+├── gui/            # Vue GUI components
+└── worlds/         # Tiled map files (.tmx)
+```
+
+Register modules in `rpg.toml`:
+
+```toml
+modules = [
+    './main',
+    './modules/combat',
+    '@rpgjs/default-gui',
+    '@rpgjs/gamepad'
+]
+```

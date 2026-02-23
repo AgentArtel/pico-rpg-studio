@@ -1,0 +1,20 @@
+import { RpgPlayer } from '@rpgjs/server'
+import { MapData, RpgMap } from '@rpgjs/server'
+
+@MapData({
+    id: '{{MAP_ID}}',
+    file: require('./worlds/maps/{{MAP_FILE}}.tmx')
+})
+export default class {{MAP_NAME}} extends RpgMap {
+    onInit() {
+        console.log('Map {{MAP_ID}} loaded')
+    }
+
+    onJoin(player: RpgPlayer) {
+        console.log('Player joined:', player.id)
+    }
+    
+    onLeave(player: RpgPlayer) {
+        console.log('Player left:', player.id)
+    }
+}

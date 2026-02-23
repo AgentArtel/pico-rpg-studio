@@ -1,0 +1,16 @@
+import { Item } from '@rpgjs/database'
+
+@Item({
+    id: '{{ITEM_ID}}',
+    name: '{{ITEM_NAME}}',
+    description: '{{ITEM_DESCRIPTION}}',
+    price: {{ITEM_PRICE}},
+    consumable: {{ITEM_CONSUMABLE}},
+    hpValue: {{ITEM_HP_VALUE}},
+    hitRate: 1,
+    addStates: [],
+    removeStates: [],
+    elements: [],
+    paramsModifier: {}
+})
+export default class {{ITEM_CLASS_NAME}} {}

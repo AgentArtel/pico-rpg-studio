@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="15" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="18">
+ <tileset firstgid="1" source="space_5.tsx"/>
+ <tileset firstgid="1025" source="[Base]BaseChip_pipo.tsx"/>
+ <tileset firstgid="2025" source="[A]Flower_pipo.tsx"/>
+ <tileset firstgid="2121" source="CuteRPG_A.tsx"/>
+ <layer id="1" name="Ground" width="15" height="15">
+  <data encoding="csv">
+161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,
+193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,
+225,226,227,228,229,230,231,232,233,234,235,236,237,238,239,
+257,258,259,260,261,262,263,264,265,266,267,268,269,270,271,
+289,290,291,292,293,294,295,296,297,298,299,300,301,302,303,
+321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,
+353,354,355,356,357,358,359,360,361,362,363,364,365,366,367,
+385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,
+417,418,419,420,421,422,423,424,425,426,427,428,429,430,431,
+449,450,451,452,453,454,455,456,457,458,459,460,461,462,463,
+481,482,483,484,485,486,487,488,489,490,491,492,493,494,495,
+513,514,515,516,517,518,519,520,521,522,523,524,525,526,527,
+545,546,547,548,549,1316,551,552,553,1316,555,556,557,558,559,
+577,578,579,580,581,1316,583,584,585,1316,587,588,589,590,591,
+609,610,611,612,613,1316,1316,1316,1316,1316,619,620,621,622,623
+</data>
+ </layer>
+ <layer id="7" name="pilairs" width="15" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1930,0,0,0,1930,0,0,0,0,0,
+0,0,0,0,0,1938,0,0,0,1938,0,0,0,0,0,
+0,0,0,0,0,1946,0,0,0,1946,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="5" name="walkways" width="15" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,1512,0,1637,0,1512,0,0,0,0,0,
+0,0,0,0,0,1520,0,1645,0,1520,0,0,0,0,0,
+0,0,0,0,0,1316,1316,1316,1316,1316,0,0,0,0,0,
+0,0,0,0,0,1316,1316,1316,1316,1316,0,0,0,0,0,
+0,0,0,0,0,1495,0,0,0,1495,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1316,1316,1316,0,0,0,0,0,0,
+0,0,0,0,0,0,1316,1316,1316,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="6" name="stairs" width="15" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,1356,0,1358,0,0,0,0,0,0,
+0,0,0,0,0,0,1364,1365,1366,0,0,0,0,0,0,
+0,0,0,0,0,0,1364,1365,1366,0,0,0,0,0,0,
+0,0,0,0,0,0,1364,1365,1366,0,0,0,0,0,0,
+0,0,0,0,0,0,1364,1365,1366,0,0,0,0,0,0,
+0,0,0,0,0,0,1372,1373,1374,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="3" name="Decorations" width="15" height="15">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,65,0,67,0,1638,1948,1638,0,65,0,0,0,0,
+0,0,97,98,99,0,1646,1956,1646,0,97,98,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,33,0,35,0,0,0,0,35,33,34,0,0,0,
+0,0,65,66,67,0,0,0,0,67,65,0,0,0,0,
+0,0,0,0,0,1949,0,0,0,1949,0,98,0,0,0,
+0,0,0,0,0,1957,0,0,0,1957,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="2" name="Collisions" width="15" height="15">
+  <properties>
+   <property name="type" value="collision"/>
+  </properties>
+  <data encoding="csv">
+2173,2173,2173,2173,2173,2173,2173,2173,2173,2173,2173,2173,2173,2173,2173,
+2173,0,0,0,0,0,0,2173,2173,0,0,0,0,0,2173,
+2173,0,0,0,0,0,0,0,0,0,0,0,0,0,2173,
+2173,0,0,1,2173,2173,2173,2173,2173,2173,2173,1,0,2173,2173,
+2173,0,0,1,2173,0,0,0,0,0,2173,1,0,2173,2173,
+2173,0,0,0,2173,0,0,0,0,0,2173,0,0,2173,2173,
+2173,0,0,0,2173,0,0,0,0,0,2173,0,0,0,2173,
+2173,0,0,0,2173,2173,0,0,0,2173,2173,0,0,0,2173,
+2173,0,0,0,0,2173,0,0,0,2173,0,0,0,0,2173,
+2173,0,0,1,1,2173,0,0,0,2173,1,1,0,0,2173,
+2173,0,0,1,1,2173,0,0,0,2173,2173,1,0,0,2173,
+2173,0,0,0,2173,2173,0,0,0,2173,2173,0,0,0,2173,
+2173,0,0,0,2173,2173,0,0,0,2173,2173,0,0,0,2173,
+2173,0,0,0,2173,0,0,0,0,0,2173,0,0,0,2173,
+2173,2173,2173,2173,2173,0,0,0,0,0,2173,2173,2173,2173,2173
+</data>
+ </layer>
+ <objectgroup id="4" name="Events">
+  <object id="1" name="start" type="start" x="239.368" y="414.743">
+   <properties>
+    <property name="displayName" value="Player Spawn"/>
+   </properties>
+  </object>
+  <object id="5" name="area_void_altar_01" type="zone" x="159.764" y="100.708" width="158.967" height="121.743">
+   <properties>
+    <property name="areaId" value="area_void_altar_01"/>
+    <property name="description" value="The elevated altar area with bell, book, doors, and tablets"/>
+    <property name="displayName" value="Altar Platform"/>
+    <property name="entityType" value="area-marker"/>
+   </properties>
+  </object>
+  <object id="7" name="area_void_platform_01" type="zone" x="159.736" y="378.277" width="158.987" height="101.259">
+   <properties>
+    <property name="areaId" value="area_void_platform_01"/>
+    <property name="description" value="The platform where players spawn"/>
+    <property name="displayName" value="Lower Platform"/>
+    <property name="entityType" value="area-marker"/>
+   </properties>
+  </object>
+  <object id="8" name="trig_void_chaos_01" type="teleport" x="307.264" y="134.674">
+   <properties>
+    <property name="areaId" value="area_void_altar_01"/>
+    <property name="displayName" value="Door to Chaos"/>
+    <property name="entityType" value="trigger"/>
+    <property name="triggerType" value="teleport"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="10" name="trig_void_clarity_01" type="teleport" x="172.067" y="135.217">
+   <properties>
+    <property name="areaId" value="area_void_altar_01"/>
+    <property name="displayName" value="Door to Clarity"/>
+    <property name="entityType" value="trigger"/>
+    <property name="triggerType" value="teleport"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="11" name="obj_void_book_01" type="interactive" x="240.283" y="151.199">
+   <properties>
+    <property name="aiEnabled" type="bool" value="true"/>
+    <property name="areaId" value="area_void_altar_01"/>
+    <property name="displayName" value="Mirrored Figure"/>
+    <property name="entityType" value="object-api"/>
+    <property name="role" value="instruction"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="14" name="obj_void_sign_chaos_01" type="signage" x="271.754" y="132.844">
+   <properties>
+    <property name="aiEnabled" type="bool" value="true"/>
+    <property name="areaId" value="area_void_altar_01"/>
+    <property name="displayName" value="Chaos Tablet"/>
+    <property name="entityType" value="object-api"/>
+    <property name="role" value="sign"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="15" name="obj_void_sign_clarity_01" type="signage" x="207.692" y="134.29">
+   <properties>
+    <property name="aiEnabled" type="bool" value="true"/>
+    <property name="areaId" value="area_void_altar_01"/>
+    <property name="displayName" value="Clarity Tablet"/>
+    <property name="entityType" value="object-api"/>
+    <property name="role" value="sign"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="16" name="spawn_void_start_01" type="spawn" x="269.227" y="457.616">
+   <properties>
+    <property name="areaId" value="area_void_platform_01"/>
+    <property name="displayName" value="Player Spawn"/>
+    <property name="entityType" value="spawn-point"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+</map>

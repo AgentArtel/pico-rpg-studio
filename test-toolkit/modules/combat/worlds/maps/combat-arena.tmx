@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="15" tilewidth="32" tileheight="32">
+ <!-- GOOD: Relative path to tileset -->
+ <tileset firstgid="1" source="../tilesets/terrain.tsx"/>
+ 
+ <layer id="1" name="Ground" width="20" height="15">
+  <data encoding="csv">
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,
+1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,
+1,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,1,
+1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,
+1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,
+1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,
+1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,
+1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,
+1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,2,1,2,1,
+1,2,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,2,1,
+1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,2,1,
+1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
+1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+  </data>
+ </layer>
+ 
+ <!-- Events layer for NPC positions -->
+ <objectgroup id="2" name="Events">
+  <object id="1" name="EV-COMBAT-SHOPKEEPER-001" gid="5" x="320" y="224" width="32" height="32"/>
+  <object id="2" name="EV-COMBAT-SLIME-001" gid="6" x="160" y="160" width="32" height="32"/>
+  <object id="3" name="EV-COMBAT-SLIME-001" gid="6" x="480" y="160" width="32" height="32"/>
+  <object id="4" name="EV-COMBAT-QUEST-GIVER-001" gid="7" x="320" y="352" width="32" height="32"/>
+ </objectgroup>
+</map>

@@ -1,0 +1,29 @@
+---
+description: Event class shape — onInit, onAction, hitbox, setGraphic
+globs: "**/events/**/*.ts"
+alwaysApply: false
+---
+
+# Event Class Structure
+
+Events (NPCs) extend `RpgEvent`, use `@EventData`, and implement `onInit` and `async onAction(player: RpgPlayer)`.
+
+```typescript
+@EventData({
+    name: 'EV-001',
+    hitbox: { width: 32, height: 16 }
+})
+export default class MyEvent extends RpgEvent {
+    onInit() {
+        this.setGraphic('graphicName')
+        this.setHitbox(32, 16)
+    }
+
+    async onAction(player: RpgPlayer) {
+        // Interaction logic
+    }
+}
+```
+
+- Use unique, descriptive event IDs (e.g. `EV-TOWN-VILLAGER-001`).
+- Set graphic and hitbox in `onInit`; use `async onAction` for player interactions and `await player.showText()` etc.

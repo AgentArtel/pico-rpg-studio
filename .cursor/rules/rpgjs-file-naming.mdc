@@ -1,0 +1,13 @@
+---
+description: Event, hook, database, spritesheet, and GUI file naming conventions
+globs: ["**/*.ts", "**/*.vue"]
+alwaysApply: false
+---
+
+# File Naming Conventions
+
+- **Event classes:** PascalCase with `Event` suffix (e.g. `VillagerEvent`, `ShopkeeperEvent`)
+- **Hook files:** camelCase (e.g. `player.ts`, `server.ts`, `client.ts`)
+- **Database items:** PascalCase (e.g. `Potion.ts`, `IronSword.ts`)
+- **Spritesheets:** PascalCase (e.g. `Characters.ts`, `Monsters.ts`)
+- **GUI components:** PascalCase (e.g. `DialogUi.vue`, `MenuUi.vue`)
