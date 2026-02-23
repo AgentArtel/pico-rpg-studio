@@ -4,6 +4,8 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+**Three projects, one stack.** This repo contains **(1) the RPG game** ([my-rpg-game](my-rpg-game/)), **(2) Studio** ([studio](studio/)) — the admin and agent/workflow UI — and **(3) PicoClaw** ([picoclaw](picoclaw/)) — the AI agent runtime. They share Supabase: Studio configures NPCs and agents and deploys PicoClaw; the game spawns NPCs and sends player chat to PicoClaw; PicoClaw runs the agents and returns responses. See [Project overview](docs/PROJECT_OVERVIEW.md) for how they connect.
+
 ---
 
 ## What is This?
@@ -36,7 +38,7 @@
 
 ```
 kimi-rpg/
-├── my-rpg-game/          # RPGJS game server (Node.js)
+├── my-rpg-game/          # (1) RPGJS game server (Node.js)
 │   ├── main/
 │   │   ├── services/     # NPC spawner, object spawner, AI service
 │   │   ├── items/        # Game items (EmailItem, etc.)
@@ -44,15 +46,21 @@ kimi-rpg/
 │   │   └── player.ts     # Player hooks
 │   └── package.json
 │
-├── studio/               # React admin panel (Vite + shadcn/ui)
+├── studio/               # (2) React admin panel (Vite + shadcn/ui)
 │   ├── src/
 │   │   ├── pages/        # NPC Builder, Objects, Integrations
 │   │   ├── components/   # UI components
 │   │   └── hooks/        # React Query hooks
 │   └── supabase/
-│       └── functions/    # Edge Functions (object-api, npc-ai-chat)
+│       └── functions/    # Edge Functions (object-api, npc-ai-chat, picoclaw-bridge)
 │
-└── docs/                 # Documentation
+├── picoclaw/             # (3) PicoClaw agent runtime (Go); NPC chat and tools run here
+│   └── ...
+│
+├── RPG-JS/               # Framework source (optional local reference)
+├── docs/                 # Documentation (incl. PROJECT_OVERVIEW.md)
+├── ideas/                # Feature ideas and handoffs
+└── docs/implementation/ # Implementation and agent handoff docs
 ```
 
 ---
@@ -123,6 +131,44 @@ npm run dev
 Game: http://localhost:3000  
 Studio: http://localhost:5173
 
+**Optional — run all three:** For local PicoClaw (NPC agents in chat), see [Project overview](docs/PROJECT_OVERVIEW.md#run-the-stack) and [picoclaw/INTEGRATION.md](picoclaw/INTEGRATION.md).
+
+---
+
+## How the Three Projects Work Together
+
+- **Studio → Supabase:** Saves agent configs, NPC definitions, workflows, and agent memory. Studio also deploys and manages PicoClaw via the **picoclaw-bridge** Edge Function.
+- **Game → Supabase:** Reads content (NPCs, objects), syncs player state, and uses Edge Functions for object actions and NPC chat.
+- **Player talks to NPC:** Game sends the message to the **npc-ai-chat** Edge Function, which forwards to **PicoClaw**. PicoClaw runs the agent (LLM + skills/tools) and returns the reply; npc-ai-chat writes conversation to `agent_memory` and returns the text to the game.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            SUPABASE                                         │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────────────────┐ │
+│  │  game schema    │  │  public schema  │  │  Edge Functions             │ │
+│  │  agent_configs  │  │  studio_*       │  │  object-api, npc-ai-chat,   │ │
+│  │  agent_memory   │  │  workflows      │  │  picoclaw-bridge            │ │
+│  │  player_state   │  │  executions     │  └──────────────┬──────────────┘ │
+│  │  object_*       │  └────────┬────────┘                   │              │
+│  └────────┬────────┘          │                             │              │
+└───────────┼───────────────────┼─────────────────────────────┼──────────────┘
+            │                   │                             │
+    ┌───────▼───────┐   ┌───────▼───────┐   ┌──────────────────▼──────────────┐
+    │  RPGJS Game   │   │    Studio     │   │  PicoClaw (agent runtime)      │
+    │  NPC spawner  │   │  NPC Builder  │   │  Receives chat from npc-ai-chat │
+    │  AI service   │   │  Integrations │   │  Runs agents, tools, LLMs        │
+    │  Objects      │   │  Workflows    │   └──────────────────┬──────────────┘
+    └───────┬───────┘   └───────────────┘                      │
+            │                                                    │
+            └──────────────────────┬────────────────────────────┘
+                                   │
+                         ┌────────▼────────┐
+                         │  External APIs   │
+                         │  Gmail, Gemini,  │
+                         │  Groq, etc.      │
+                         └─────────────────┘
+```
+
 ---
 
 ## Key Features
@@ -158,36 +204,12 @@ No code changes needed for:
 
 | Doc | Description |
 |-----|-------------|
+| [docs/PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md) | **Three projects:** what they are, how they connect, run the stack |
 | [OBJECT-SYSTEM.md](./OBJECT-SYSTEM.md) | Workflow objects (Mailbox, Desk) |
 | [EDGE-FUNCTIONS.md](./EDGE-FUNCTIONS.md) | Supabase Edge Functions |
+| [docs/implementation/README.md](docs/implementation/README.md) | Implementation & handoffs (agent task briefs) |
 | [studio/docs/game-integration/VISION-studio-game-architecture.md](./studio/docs/game-integration/VISION-studio-game-architecture.md) | Architecture overview |
 | [studio/docs/game-integration/NPC-BUILDER-PLAN.md](./studio/docs/game-integration/NPC-BUILDER-PLAN.md) | NPC system spec |
-
----
-
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                         SUPABASE                                │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
-│  │  game schema    │  │  public schema  │  │  Edge Functions │ │
-│  │  ─────────────  │  │  ─────────────  │  │  ─────────────  │ │
-│  │  agent_configs  │  │  studio_*       │  │  object-api     │ │
-│  │  agent_memory   │  │  workflows      │  │  npc-ai-chat    │ │
-│  │  player_state   │  │  executions     │  │                 │ │
-│  │  object_*       │  │                 │  │                 │ │
-│  └────────┬────────┘  └────────┬────────┘  └────────┬────────┘ │
-└───────────┼────────────────────┼────────────────────┼──────────┘
-            │                    │                    │
-    ┌───────▼───────┐   ┌───────▼───────┐   ┌───────▼───────┐
-    │  RPGJS Game   │   │    Studio     │   │  External APIs│
-    │  ──────────   │   │   ────────    │   │  ───────────  │
-    │  NPC spawner  │   │  NPC Builder  │   │  Gmail        │
-    │  AI service   │   │  Integrations │   │  Gemini       │
-    │  Objects      │   │  Workflows    │   │  Groq         │
-    └───────────────┘   └───────────────┘   └───────────────┘
-```
 
 ---
 

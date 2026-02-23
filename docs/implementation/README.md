@@ -20,5 +20,6 @@ This folder holds handoff packets, research summaries, and implementation plans 
 
 ## Related
 
+- **This repo is one product:** **game** (my-rpg-game), **Studio**, and **PicoClaw**. See [Project overview](../PROJECT_OVERVIEW.md) and [README](../../README.md) for how they work together.
 - **Ideas:** [../ideas/studio-game-control-node-library-handoff.md](../ideas/studio-game-control-node-library-handoff.md) — original game control bridge idea (no PicoClaw tool). [../ideas/glass-canvas-ai-creator-personas-handoff.md](../ideas/glass-canvas-ai-creator-personas-handoff.md) — Glass Canvas AI creator personas and identity-owned storefronts. [../ideas/studio-picoclaw-alignment-openclaw-parity-handoff.md](../ideas/studio-picoclaw-alignment-openclaw-parity-handoff.md) — Studio PicoClaw alignment (OpenClaw parity).
 - **Studio architecture:** [../studio-architecture/QUICK_REFERENCE.md](../studio-architecture/QUICK_REFERENCE.md).

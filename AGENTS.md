@@ -18,49 +18,32 @@ RPG-JS is a TypeScript framework for creating RPG (Role-Playing Games) and MMORP
 - Playground: https://playground.rpgjs.dev
 - Community: https://community.rpgjs.dev
 
+## The Three Projects
+
+This repo is one product: the **game** ([my-rpg-game](my-rpg-game/)) is the RPG-JS game server; **Studio** ([studio](studio/)) is the admin/agent/workflow UI that syncs with the game and deploys PicoClaw; **PicoClaw** ([picoclaw](picoclaw/)) is the AI agent runtime that powers NPC chat and tools. They share Supabase and Edge Functions (object-api, npc-ai-chat, picoclaw-bridge). For a full overview, see [README.md](README.md) and [docs/PROJECT_OVERVIEW.md](docs/PROJECT_OVERVIEW.md).
+
 ## Repository Structure
 
-This repository is organized as a monorepo using Lerna for package management:
+This repository is organized as a monorepo. The three main products are my-rpg-game, studio, and picoclaw; RPG-JS is the framework source (optional local reference).
 
 ```
 /
-├── RPG-JS/                 # Main framework source code
-│   ├── packages/           # Core framework packages
-│   │   ├── client/         # Client-side engine (@rpgjs/client)
-│   │   ├── server/         # Server-side engine (@rpgjs/server)
-│   │   ├── common/         # Shared code between client and server
-│   │   ├── compiler/       # Build toolchain (@rpgjs/compiler)
-│   │   ├── database/       # Database types and utilities
-│   │   ├── tiled/          # Tiled map format support
-│   │   ├── types/          # TypeScript type definitions
-│   │   ├── testing/        # Testing utilities (@rpgjs/testing)
-│   │   ├── runtime/        # Runtime utilities
-│   │   ├── standalone/     # Standalone (RPG) build target
-│   │   ├── plugins/        # Official plugins
-│   │   │   ├── default-gui/      # Default UI components
-│   │   │   ├── chat/             # Chat system
-│   │   │   ├── gamepad/          # Gamepad support
-│   │   │   ├── mobile-gui/       # Mobile UI
-│   │   │   ├── save/             # Save/load system
-│   │   │   ├── title-screen/     # Title screen
-│   │   │   ├── emotion-bubbles/  # Emotion bubble effects
-│   │   │   ├── auth/             # Authentication
-│   │   │   ├── agones/           # Kubernetes/Agones scaling
-│   │   │   └── ...
-│   │   ├── sample/         # Sample game 1
-│   │   ├── sample2/        # Sample game 2 (main development testbed)
-│   │   └── sample3/        # Sample game 3
-│   └── tests/              # Framework unit tests
-├── my-rpg-game/            # User game project (starter template)
-│   ├── main/               # Game modules
-│   │   ├── player.ts       # Player hooks and logic
-│   │   ├── events/         # NPC events
-│   │   ├── worlds/         # Maps and tilesets
-│   │   └── spritesheets/   # Character sprites
+├── my-rpg-game/            # (1) Game — RPG-JS game server
+│   ├── main/               # Game modules (player, events, worlds, services)
 │   ├── rpg.toml            # Game configuration
 │   ├── package.json
 │   └── Dockerfile
-└── docs/                   # VitePress documentation site
+├── studio/                 # (2) Studio — React admin + Edge Functions
+│   ├── src/                # Frontend (pages, components, hooks)
+│   └── supabase/functions/ # object-api, npc-ai-chat, picoclaw-bridge
+├── picoclaw/               # (3) PicoClaw — AI agent runtime (Go)
+│   └── ...                 # Used for NPC agents and optional studio assistants
+├── RPG-JS/                 # Framework source (Lerna monorepo)
+│   ├── packages/           # client, server, compiler, plugins, etc.
+│   └── tests/
+├── docs/                   # Documentation (PROJECT_OVERVIEW, implementation, guides)
+├── ideas/                  # Feature ideas and handoffs
+└── docs/implementation/    # Agent task briefs and handoffs
 ```
 
 ## Plugins and Modules (my-rpg-game)
